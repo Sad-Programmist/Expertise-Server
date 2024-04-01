@@ -51,7 +51,7 @@ public class OpinionService {
 
     @Transactional
     public List<ProjectDto> getProjectsForCreateOpinion(Integer expertId, Integer year) {
-        List<ProjectEntity> projectEntities = projectRepository.findProjectEntitiesByYear(year);
+        List<ProjectEntity> projectEntities = projectRepository.findProjectEntitiesByYearOrderByOrderNumberAsc(year);
         List<ProjectDto> result = new ArrayList<>();
         for (ProjectEntity project : projectEntities) {
             OpinionEntity opinion = opinionRepository.findOpinionEntityByProjectIdAndExpertId(project.getId(), expertId);
@@ -88,7 +88,7 @@ public class OpinionService {
 
     @Transactional
     public List<ProjectDto> getProjectsForChangeOpinion(Integer expertId, Integer year) {
-        List<ProjectEntity> projectEntities = projectRepository.findProjectEntitiesByYear(year);
+        List<ProjectEntity> projectEntities = projectRepository.findProjectEntitiesByYearOrderByOrderNumberAsc(year);
         List<ProjectDto> result = new ArrayList<>();
         for (ProjectEntity project : projectEntities) {
             OpinionEntity opinion = opinionRepository.findOpinionEntityByProjectIdAndExpertId(project.getId(), expertId);

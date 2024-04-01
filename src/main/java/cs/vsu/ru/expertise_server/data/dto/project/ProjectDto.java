@@ -10,5 +10,6 @@ public class ProjectDto {
     private final String participants;
     private final String theme;
     private final int year;
+    private final int orderNumber;
     private final double score;
 }

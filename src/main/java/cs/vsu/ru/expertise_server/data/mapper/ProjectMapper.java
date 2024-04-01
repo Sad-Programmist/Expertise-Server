@@ -14,6 +14,7 @@ public class ProjectMapper {
         projectEntity.setParticipants(project.getParticipants());
         projectEntity.setTheme(project.getTheme());
         projectEntity.setYear(project.getYear());
+        projectEntity.setOrderNumber(project.getOrderNumber());
         projectEntity.setScore(0);
 
         return projectEntity;
@@ -23,6 +24,7 @@ public class ProjectMapper {
         projectEntity.setParticipants(project.getParticipants());
         projectEntity.setTheme(project.getTheme());
         projectEntity.setYear(project.getYear());
+        projectEntity.setOrderNumber(project.getOrderNumber());
 
         return projectEntity;
     }
@@ -32,8 +34,9 @@ public class ProjectMapper {
         String participants = projectEntity.getParticipants();
         String theme = projectEntity.getTheme();
         int year = projectEntity.getYear();
+        int orderNumber = projectEntity.getOrderNumber();
         double score = projectEntity.getScore();
 
-        return new ProjectDto(id, participants, theme, year, score);
+        return new ProjectDto(id, participants, theme, year, orderNumber, score);
     }
 }

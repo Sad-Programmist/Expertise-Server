@@ -61,7 +61,7 @@ public class ProjectService {
 
     @Transactional
     public List<ProjectDto> getAllProjectsByYear(Integer year) {
-        List<ProjectEntity> projectEntities = projectRepository.findProjectEntitiesByYear(year);
+        List<ProjectEntity> projectEntities = projectRepository.findProjectEntitiesByYearOrderByOrderNumberAsc(year);
         return projectEntities.stream().map(projectMapper::toDto).toList();
     }
 

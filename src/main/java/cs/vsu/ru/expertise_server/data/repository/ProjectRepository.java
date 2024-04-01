@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProjectRepository extends JpaRepository<ProjectEntity, Integer> {
     ProjectEntity findProjectEntityById(Integer id);
-    List<ProjectEntity> findProjectEntitiesByYear(Integer year);
+    List<ProjectEntity> findProjectEntitiesByYearOrderByOrderNumberAsc(Integer year);
     List<ProjectEntity> findProjectEntitiesByYearOrderByScoreDesc(int year);
     @Query("SELECT DISTINCT p.year FROM ProjectEntity p")
     List<Integer> findAllUniqueYears();

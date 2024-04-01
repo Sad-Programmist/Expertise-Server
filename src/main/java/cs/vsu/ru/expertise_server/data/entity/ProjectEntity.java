@@ -24,6 +24,8 @@ public class ProjectEntity {
     private String theme;
     @Column(name = "year")
     private int year;
+    @Column(name = "number")
+    private int orderNumber;
     @Column(name = "score")
     private double score;
     @OneToMany(mappedBy="project", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
