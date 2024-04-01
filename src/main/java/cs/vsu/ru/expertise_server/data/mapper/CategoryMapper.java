@@ -14,7 +14,6 @@ public class CategoryMapper {
         categoryEntity.setNumber(category.getNumber());
         categoryEntity.setText(category.getText());
         categoryEntity.setMaxsum(category.getMaxsum());
-        categoryEntity.setMinsum(category.getMinsum());
 
         return categoryEntity;
     }
@@ -23,7 +22,6 @@ public class CategoryMapper {
         categoryEntity.setNumber(category.getNumber());
         categoryEntity.setText(category.getText());
         categoryEntity.setMaxsum(category.getMaxsum());
-        categoryEntity.setMinsum(category.getMinsum());
 
         return categoryEntity;
     }
@@ -32,9 +30,8 @@ public class CategoryMapper {
         int id = categoryEntity.getId();
         int number = categoryEntity.getNumber();
         String text = categoryEntity.getText();
-        int minsum = categoryEntity.getMinsum();
         int maxsum = categoryEntity.getMaxsum();
 
-        return new CategoryDto(id, number, text, minsum, maxsum);
+        return new CategoryDto(id, number, text, maxsum);
     }
 }

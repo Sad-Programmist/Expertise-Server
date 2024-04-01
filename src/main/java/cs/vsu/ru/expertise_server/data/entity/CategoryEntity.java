@@ -22,8 +22,6 @@ public class CategoryEntity {
     private int number;
     @Column(name = "text", length = 512)
     private String text;
-    @Column(name = "minsum")
-    private int minsum;
     @Column(name = "maxsum")
     private int maxsum;
     @OneToMany(mappedBy="category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

@@ -8,6 +8,5 @@ import lombok.Getter;
 public class CategoryCreateDto {
     private final int number;
     private final String text;
-    private final int minsum;
     private final int maxsum;
 }
