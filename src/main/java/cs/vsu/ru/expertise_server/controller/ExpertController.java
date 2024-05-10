@@ -4,12 +4,7 @@ import cs.vsu.ru.expertise_server.data.dto.expert.ExpertAuthDto;
 import cs.vsu.ru.expertise_server.data.dto.expert.ExpertChangeDto;
 import cs.vsu.ru.expertise_server.data.dto.expert.ExpertCreateDto;
 import cs.vsu.ru.expertise_server.data.dto.expert.ExpertDto;
-import cs.vsu.ru.expertise_server.data.dto.opinion.OpinionChangeDto;
-import cs.vsu.ru.expertise_server.data.dto.opinion.OpinionCreateDto;
-import cs.vsu.ru.expertise_server.data.dto.opinion.OpinionDto;
-import cs.vsu.ru.expertise_server.data.dto.project.ProjectDto;
 import cs.vsu.ru.expertise_server.service.ExpertService;
-import cs.vsu.ru.expertise_server.service.OpinionService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,27 +26,25 @@ public class ExpertController {
         if (expertDto != null)
             return new ResponseEntity<>(expertDto.getId(), HttpStatus.OK);
         else
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    @GetMapping("/create")
+    public ResponseEntity<?> identification(@RequestParam String login) {
+        if (expertService.identification(login))
+            return new ResponseEntity<>(HttpStatus.OK);
+        else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createExpert(@RequestBody ExpertCreateDto expert) {
-        Boolean response = expertService.createExpert(expert);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void createExpert(@RequestBody ExpertCreateDto expert) {
+        expertService.createExpert(expert);
     }
 
     @PostMapping("/change")
-    public ResponseEntity<?> changeExpert(@RequestBody ExpertChangeDto expert) {
-        Boolean response = expertService.changeExpert(expert);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void changeExpert(@RequestBody ExpertChangeDto expert) {
+        expertService.changeExpert(expert);
     }
 
     @GetMapping
@@ -60,13 +53,8 @@ public class ExpertController {
     }
 
     @GetMapping("/delete")
-    public ResponseEntity<?> deleteExpert(@RequestParam Integer expertId) {
-        Boolean response = expertService.deleteExpert(expertId);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void deleteExpert(@RequestParam Integer expertId) {
+        expertService.deleteExpert(expertId);
     }
 
     @GetMapping("/edit")

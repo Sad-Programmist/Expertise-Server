@@ -10,5 +10,7 @@ import java.util.List;
 public interface ExpertRepository extends JpaRepository<ExpertEntity, Integer> {
     ExpertEntity findExpertEntityById(Integer id);
     ExpertEntity findExpertEntityByLoginAndPassword(String login, String password);
+    ExpertEntity findExpertEntityByLogin(String login);
+    List<ExpertEntity> findByLoginIsNotNull();
     long count();
 }

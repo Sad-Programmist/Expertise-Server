@@ -24,6 +24,6 @@ public class ExpertEntity {
     private String login;
     @Column(name = "password", length = 128)
     private String password;
-    @OneToMany(mappedBy="expert", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="expert", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private Set<OpinionEntity> opinions;
 }
