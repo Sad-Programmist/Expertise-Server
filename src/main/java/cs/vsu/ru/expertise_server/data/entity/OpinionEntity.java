@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -22,8 +24,12 @@ public class OpinionEntity {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "expert", nullable = false)
     private ExpertEntity expert;
-    @Column(name = "scores", length = 512)
-    private String scores;
+    @ElementCollection
+    @CollectionTable(name = "opinion_scores", joinColumns = @JoinColumn(name = "opinion_id"))
+    @Column(name = "score")
+    private List<Integer> scores;
+    @Column(name = "final_score")
+    private Integer finalScore;
     @Column(name = "text", length = 512)
     private String text;
     @Column(name = "conclusion")

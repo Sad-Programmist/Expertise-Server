@@ -3,6 +3,7 @@ package cs.vsu.ru.expertise_server.controller;
 import cs.vsu.ru.expertise_server.data.dto.opinion.OpinionChangeDto;
 import cs.vsu.ru.expertise_server.data.dto.opinion.OpinionCreateDto;
 import cs.vsu.ru.expertise_server.data.dto.opinion.OpinionDto;
+import cs.vsu.ru.expertise_server.data.dto.opinion.ShortOpinionDto;
 import cs.vsu.ru.expertise_server.data.dto.project.ProjectDto;
 import cs.vsu.ru.expertise_server.service.OpinionService;
 import lombok.AllArgsConstructor;
@@ -21,13 +22,8 @@ public class OpinionController {
     private OpinionService opinionService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createOpinion(@RequestBody OpinionCreateDto opinion) {
-        Boolean response = opinionService.createOpinion(opinion);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void createOpinion(@RequestBody OpinionCreateDto opinion) {
+        opinionService.createOpinion(opinion);
     }
 
     @GetMapping("/create")
@@ -40,14 +36,14 @@ public class OpinionController {
         return new ResponseEntity<>(opinionService.getOpinion(expertId, projectId), HttpStatus.OK);
     }
 
+    @GetMapping("/view")
+    public ResponseEntity<List<ShortOpinionDto>> getShortOpinions(@RequestParam Integer expertId, Integer year) {
+        return new ResponseEntity<>(opinionService.getShortOpinion(expertId, year), HttpStatus.OK);
+    }
+
     @PostMapping("/change")
-    public ResponseEntity<?> changeOpinion(@RequestBody OpinionChangeDto opinion) {
-        Boolean response = opinionService.changeOpinion(opinion);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void changeOpinion(@RequestBody OpinionChangeDto opinion) {
+        opinionService.changeOpinion(opinion);
     }
 
     @GetMapping("/change")

@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface OpinionRepository extends JpaRepository<OpinionEntity, Integer> {
-    OpinionEntity findOpinionEntityById(Integer id);
-    Integer countOpinionEntityByProjectId(Integer projectId);
+
     List<OpinionEntity> findOpinionEntitiesByProjectId(Integer projectId);
     OpinionEntity findOpinionEntityByProjectIdAndExpertId(Integer projectId, Integer expertId);
+    List<OpinionEntity> findOpinionEntitiesByExpertIdAndProjectYear(Integer expertId, Integer year);
 
 }
