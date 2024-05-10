@@ -26,11 +26,11 @@ public class CategoryMapper {
         return categoryEntity;
     }
 
-    public CategoryDto toDto(CategoryEntity categoryEntity) {
-        int id = categoryEntity.getId();
-        int number = categoryEntity.getNumber();
-        String text = categoryEntity.getText();
-        int maxsum = categoryEntity.getMaxsum();
+    public CategoryDto toDto(CategoryEntity category) {
+        int id = category.getId();
+        int number = category.getNumber();
+        String text = category.getText();
+        int maxsum = category.getMaxsum();
 
         return new CategoryDto(id, number, text, maxsum);
     }

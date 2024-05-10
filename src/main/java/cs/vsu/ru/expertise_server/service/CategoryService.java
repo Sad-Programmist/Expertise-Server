@@ -23,34 +23,19 @@ public class CategoryService {
     private CategoryMapper categoryMapper;
 
     @Transactional
-    public Boolean createCategory(CategoryCreateDto category) {
-        try {
-            categoryRepository.save(categoryMapper.toEntity(category));
-            return true;
-        } catch (DataAccessException e) {
-            return false;
-        }
+    public void createCategory(CategoryCreateDto category) {
+        categoryRepository.save(categoryMapper.toEntity(category));
     }
 
     @Transactional
-    public Boolean changeCategory(CategoryChangeDto category) {
+    public void changeCategory(CategoryChangeDto category) {
         CategoryEntity categoryEntity = categoryRepository.findCategoryEntityById(category.getId());
-        try {
-            categoryRepository.save(categoryMapper.toEntity(category, categoryEntity));
-            return true;
-        } catch (DataAccessException e) {
-            return false;
-        }
+        categoryRepository.save(categoryMapper.toEntity(category, categoryEntity));
     }
 
     @Transactional
-    public Boolean deleteCategory(Integer categoryId) {
-        try {
-            categoryRepository.deleteById(categoryId);
-            return true;
-        } catch (DataAccessException e) {
-            return false;
-        }
+    public void deleteCategory(Integer categoryId) {
+        categoryRepository.deleteById(categoryId);
     }
 
     @Transactional

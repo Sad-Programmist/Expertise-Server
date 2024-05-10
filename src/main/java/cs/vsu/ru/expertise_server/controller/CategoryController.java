@@ -20,33 +20,18 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createCategory(@RequestBody CategoryCreateDto category) {
-        Boolean response = categoryService.createCategory(category);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void createCategory(@RequestBody CategoryCreateDto category) {
+        categoryService.createCategory(category);
     }
 
     @PostMapping("/change")
-    public ResponseEntity<?> changeCategory(@RequestBody CategoryChangeDto category) {
-        Boolean response = categoryService.changeCategory(category);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void changeCategory(@RequestBody CategoryChangeDto category) {
+        categoryService.changeCategory(category);
     }
 
     @GetMapping("/delete")
-    public ResponseEntity<?> deleteCategory(@RequestParam Integer categoryId) {
-        Boolean response = categoryService.deleteCategory(categoryId);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void deleteCategory(@RequestParam Integer categoryId) {
+        categoryService.deleteCategory(categoryId);
     }
 
     @GetMapping("/edit")
