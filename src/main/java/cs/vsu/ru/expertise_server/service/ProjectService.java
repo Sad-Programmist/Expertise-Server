@@ -23,13 +23,8 @@ public class ProjectService {
     private ProjectMapper projectMapper;
 
     @Transactional
-    public Boolean createProject(ProjectCreateDto project) {
-        try {
-            projectRepository.save(projectMapper.toEntity(project));
-            return true;
-        } catch (DataAccessException e) {
-            return false;
-        }
+    public void createProject(ProjectCreateDto project) {
+        projectRepository.save(projectMapper.toEntity(project));
     }
 
     @Transactional
@@ -39,24 +34,14 @@ public class ProjectService {
     }
 
     @Transactional
-    public Boolean changeProject(ProjectChangeDto project) {
+    public void changeProject(ProjectChangeDto project) {
         ProjectEntity projectEntity = projectRepository.findProjectEntityById(project.getId());
-        try {
-            projectRepository.save(projectMapper.toEntity(project, projectEntity));
-            return true;
-        } catch (DataAccessException e) {
-            return false;
-        }
+        projectRepository.save(projectMapper.toEntity(project, projectEntity));
     }
 
     @Transactional
-    public Boolean deleteProject(Integer projectId) {
-        try {
-            projectRepository.deleteById(projectId);
-            return true;
-        } catch (DataAccessException e) {
-            return false;
-        }
+    public void deleteProject(Integer projectId) {
+        projectRepository.deleteById(projectId);
     }
 
     @Transactional

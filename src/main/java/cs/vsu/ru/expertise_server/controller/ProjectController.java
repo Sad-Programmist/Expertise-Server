@@ -20,13 +20,8 @@ public class ProjectController {
     private ProjectService projectService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createProject(@RequestBody ProjectCreateDto project) {
-        Boolean response = projectService.createProject(project);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void createProject(@RequestBody ProjectCreateDto project) {
+        projectService.createProject(project);
     }
 
     @GetMapping("/change")
@@ -35,23 +30,13 @@ public class ProjectController {
     }
 
     @PostMapping("/change")
-    public ResponseEntity<?> changeProject(@RequestBody ProjectChangeDto project) {
-        Boolean response = projectService.changeProject(project);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void changeProject(@RequestBody ProjectChangeDto project) {
+        projectService.changeProject(project);
     }
 
     @GetMapping("/delete")
-    public ResponseEntity<?> deleteProject(@RequestParam Integer projectId) {
-        Boolean response = projectService.deleteProject(projectId);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void deleteProject(@RequestParam Integer projectId) {
+        projectService.deleteProject(projectId);
     }
 
     @GetMapping("/edit")

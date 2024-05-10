@@ -7,9 +7,9 @@ import lombok.Getter;
 @Getter
 public class ProjectDto {
     private final int id;
-    private final String participants;
+    private final String author;
     private final String theme;
     private final int year;
     private final int orderNumber;
-    private final double score;
+    private final int score;
 }

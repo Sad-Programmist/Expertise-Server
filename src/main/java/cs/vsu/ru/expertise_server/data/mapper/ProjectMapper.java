@@ -11,7 +11,7 @@ public class ProjectMapper {
 
     public ProjectEntity toEntity(ProjectCreateDto project) {
         ProjectEntity projectEntity = new ProjectEntity();
-        projectEntity.setParticipants(project.getParticipants());
+        projectEntity.setAuthor(project.getAuthor());
         projectEntity.setTheme(project.getTheme());
         projectEntity.setYear(project.getYear());
         projectEntity.setOrderNumber(project.getOrderNumber());
@@ -21,7 +21,7 @@ public class ProjectMapper {
     }
 
     public ProjectEntity toEntity(ProjectChangeDto project, ProjectEntity projectEntity) {
-        projectEntity.setParticipants(project.getParticipants());
+        projectEntity.setAuthor(project.getAuthor());
         projectEntity.setTheme(project.getTheme());
         projectEntity.setYear(project.getYear());
         projectEntity.setOrderNumber(project.getOrderNumber());
@@ -29,13 +29,13 @@ public class ProjectMapper {
         return projectEntity;
     }
 
-    public ProjectDto toDto(ProjectEntity projectEntity) {
-        int id = projectEntity.getId();
-        String participants = projectEntity.getParticipants();
-        String theme = projectEntity.getTheme();
-        int year = projectEntity.getYear();
-        int orderNumber = projectEntity.getOrderNumber();
-        double score = projectEntity.getScore();
+    public ProjectDto toDto(ProjectEntity project) {
+        int id = project.getId();
+        String participants = project.getAuthor();
+        String theme = project.getTheme();
+        int year = project.getYear();
+        int orderNumber = project.getOrderNumber();
+        int score = project.getScore();
 
         return new ProjectDto(id, participants, theme, year, orderNumber, score);
     }

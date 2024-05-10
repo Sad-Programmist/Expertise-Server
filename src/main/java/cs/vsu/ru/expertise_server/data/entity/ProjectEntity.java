@@ -18,8 +18,8 @@ public class ProjectEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "participants", length = 512)
-    private String participants;
+    @Column(name = "author", length = 512)
+    private String author;
     @Column(name = "theme", length = 256)
     private String theme;
     @Column(name = "year")
@@ -27,7 +27,7 @@ public class ProjectEntity {
     @Column(name = "number")
     private int orderNumber;
     @Column(name = "score")
-    private double score;
+    private int score;
     @OneToMany(mappedBy="project", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private Set<OpinionEntity> opinions;
 }

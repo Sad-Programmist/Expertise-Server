@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class ProjectChangeDto {
     private final Integer id;
-    private final String participants;
+    private final String author;
     private final String theme;
     private final int orderNumber;
     private final int year;

@@ -6,7 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class ProjectCreateDto {
-    private final String participants;
+    private final String author;
     private final String theme;
     private final int orderNumber;
     private final int year;
