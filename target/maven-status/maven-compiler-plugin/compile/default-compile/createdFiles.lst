@@ -1,4 +1,5 @@
 cs\vsu\ru\expertise_server\controller\ProjectController.class
+cs\vsu\ru\expertise_server\data\dto\opinion\ShortOpinionDto.class
 cs\vsu\ru\expertise_server\data\dto\project\ProjectChangeDto.class
 cs\vsu\ru\expertise_server\data\dto\project\ProjectDto.class
 cs\vsu\ru\expertise_server\data\entity\OpinionEntity.class
