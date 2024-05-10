@@ -24,27 +24,25 @@ public class AdminController {
         if (adminService.adminAuth(admin))
             return new ResponseEntity<>(HttpStatus.OK);
         else
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    @GetMapping("/create")
+    public ResponseEntity<?> identification(@RequestParam String login) {
+        if (adminService.identification(login))
+            return new ResponseEntity<>(HttpStatus.OK);
+        else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createAdmin(@RequestBody AdminCreateDto admin) {
-        Boolean response = adminService.createAdmin(admin);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void createAdmin(@RequestBody AdminCreateDto admin) {
+        adminService.createAdmin(admin);
     }
 
     @GetMapping("/delete")
-    public ResponseEntity<?> deleteAdmin(@RequestParam Integer adminId) {
-        Boolean response = adminService.deleteAdmin(adminId);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void deleteAdmin(@RequestParam Integer adminId) {
+        adminService.deleteAdmin(adminId);
     }
 
     @GetMapping("/edit")

@@ -8,5 +8,4 @@ import lombok.Getter;
 public class AdminDto {
     private final Integer id;
     private final String login;
-    private final String password;
 }

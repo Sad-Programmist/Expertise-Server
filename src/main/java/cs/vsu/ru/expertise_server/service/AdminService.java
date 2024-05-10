@@ -19,6 +19,7 @@ import cs.vsu.ru.expertise_server.data.mapper.*;
 import cs.vsu.ru.expertise_server.data.repository.*;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -37,27 +38,24 @@ public class AdminService {
 
     @Transactional
     public Boolean adminAuth(AdminAuthDto admin) {
-        return adminRepository.findAdminEntityByLoginAndPassword(admin.getLogin(), admin.getPassword())!=null;
+        AdminEntity adminEntity = adminRepository.findAdminEntityByLogin(admin.getLogin());
+        return adminEntity.getPassword().equals(DigestUtils.md5Hex(admin.getPassword()));
     }
 
     @Transactional
-    public Boolean createAdmin(AdminCreateDto admin) {
-        try {
-            adminRepository.save(adminMapper.toEntity(admin));
-            return true;
-        } catch (DataAccessException e) {
-            return false;
-        }
+    public Boolean identification(String login) {
+        AdminEntity admin = adminRepository.findAdminEntityByLogin(login);
+        return admin == null;
     }
 
     @Transactional
-    public Boolean deleteAdmin(Integer adminId) {
-        try {
-            adminRepository.deleteById(adminId);
-            return true;
-        } catch (DataAccessException e) {
-            return false;
-        }
+    public void createAdmin(AdminCreateDto admin) {
+        adminRepository.save(adminMapper.toEntity(admin));
+    }
+
+    @Transactional
+    public void deleteAdmin(Integer adminId) {
+        adminRepository.deleteById(adminId);
     }
 
     @Transactional
