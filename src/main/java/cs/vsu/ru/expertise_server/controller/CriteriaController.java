@@ -19,23 +19,13 @@ public class CriteriaController {
     private CriteriaService criteriaService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createCriteria(@RequestBody CriteriaCreateDto criteria) {
-        Boolean response = criteriaService.createCriteria(criteria);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void createCriteria(@RequestBody CriteriaCreateDto criteria) {
+        criteriaService.createCriteria(criteria);
     }
 
     @GetMapping("/delete")
-    public ResponseEntity<?> deleteCriteria(@RequestParam Integer criteriaId) {
-        Boolean response = criteriaService.deleteCriteria(criteriaId);
-        if (response) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public void deleteCriteria(@RequestParam Integer criteriaId) {
+        criteriaService.deleteCriteria(criteriaId);
     }
 
     @GetMapping("/edit")

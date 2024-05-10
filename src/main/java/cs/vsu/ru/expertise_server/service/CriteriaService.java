@@ -25,24 +25,14 @@ public class CriteriaService {
     private CriteriaMapper criteriaMapper;
 
     @Transactional
-    public Boolean createCriteria(CriteriaCreateDto criteria) {
+    public void createCriteria(CriteriaCreateDto criteria) {
         CategoryEntity category = categoryRepository.findCategoryEntityById(criteria.getCategoryId());
-        try {
-            criteriaRepository.save(criteriaMapper.toEntity(criteria, category));
-            return true;
-        } catch (DataAccessException e) {
-            return false;
-        }
+        criteriaRepository.save(criteriaMapper.toEntity(criteria, category));
     }
 
     @Transactional
-    public Boolean deleteCriteria(Integer criteriaId) {
-        try {
-            criteriaRepository.deleteById(criteriaId);
-            return true;
-        } catch (DataAccessException e) {
-            return false;
-        }
+    public void deleteCriteria(Integer criteriaId) {
+        criteriaRepository.deleteById(criteriaId);
     }
 
     @Transactional

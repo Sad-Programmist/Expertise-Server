@@ -18,12 +18,12 @@ public class CriteriaMapper {
         return criteriaEntity;
     }
 
-    public CriteriaDto toDto(CriteriaEntity criteriaEntity) {
-        int id = criteriaEntity.getId();
-        int number = criteriaEntity.getNumber();
-        String text = criteriaEntity.getText();
-        int categoryId = criteriaEntity.getCategory().getId();
-        int categoryNumber = criteriaEntity.getCategory().getNumber();
+    public CriteriaDto toDto(CriteriaEntity criteria) {
+        int id = criteria.getId();
+        int number = criteria.getNumber();
+        String text = criteria.getText();
+        int categoryId = criteria.getCategory().getId();
+        int categoryNumber = criteria.getCategory().getNumber();
 
         return new CriteriaDto(id, number, text, categoryId, categoryNumber);
     }
